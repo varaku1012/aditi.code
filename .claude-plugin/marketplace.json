@@ -32,8 +32,8 @@
         "typescript",
         "development"
       ],
-      "commands": ["./commands/new-sdk-app.md"],
-      "agents": ["./agents/agent-sdk-verifier-py.md", "./agents/agent-sdk-verifier-ts.md"]
+      "commands": ["new-sdk-app"],
+      "agents": ["agent-sdk-verifier-py", "agent-sdk-verifier-ts"]
     },
     {
       "name": "code-review",
@@ -53,7 +53,7 @@
         "automation",
         "ci-cd"
       ],
-      "commands": ["./commands/code-review.md"]
+      "commands": ["code-review"]
     },
     {
       "name": "commit-commands",
@@ -73,7 +73,7 @@
         "push",
         "pull-request"
       ],
-      "commands": ["./commands/commit.md", "./commands/commit-push-pr.md", "./commands/clean_gone.md"]
+      "commands": ["commit", "commit-push-pr", "clean_gone"]
     },
     {
       "name": "feature-dev",
@@ -93,8 +93,8 @@
         "design",
         "workflow"
       ],
-      "commands": ["./commands/feature-dev.md"],
-      "agents": ["./agents/code-explorer.md", "./agents/code-architect.md", "./agents/code-reviewer.md"]
+      "commands": ["feature-dev"],
+      "agents": ["code-explorer", "code-architect", "code-reviewer"]
     },
     {
       "name": "pr-review-toolkit",
@@ -114,14 +114,13 @@
         "error-handling",
         "type-design"
       ],
-      "commands": ["./commands/review-pr.md"],
       "agents": [
-        "./agents/comment-analyzer.md",
-        "./agents/error-handling-specialist.md",
-        "./agents/test-coverage-expert.md",
-        "./agents/type-design-expert.md",
-        "./agents/code-quality-expert.md",
-        "./agents/code-simplifier.md"
+        "comment-analyzer",
+        "error-handling-specialist",
+        "test-coverage-expert",
+        "type-design-expert",
+        "code-quality-expert",
+        "code-simplifier"
       ]
     },
     {
@@ -140,8 +139,7 @@
         "documentation",
         "explanations",
         "learning"
-      ],
-      "hooks": ["./hooks/hooks.json"]
+      ]
     },
     {
       "name": "security-guidance",
@@ -161,7 +159,7 @@
         "xss",
         "injection"
       ],
-      "hooks": ["./hooks/hooks.json"]
+      "hooks": true
     }
   ]
 }
