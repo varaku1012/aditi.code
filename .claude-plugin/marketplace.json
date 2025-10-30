@@ -1,0 +1,165 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "quasars-tools",
+  "version": "1.0.0",
+  "description": "Quasars Tools - Professional Claude Code plugin marketplace for team-wide productivity, code quality, and development automation",
+  "owner": {
+    "name": "Quasars Development Team",
+    "email": "contact@quasars.dev"
+  },
+  "homepage": "https://github.com/quasars-dev/quasars.tools",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quasars-dev/quasars.tools.git"
+  },
+  "license": "MIT",
+  "plugins": [
+    {
+      "name": "agent-sdk-dev",
+      "version": "1.0.0",
+      "description": "Claude Agent SDK Development Plugin - Streamlines development of Claude Agent SDK applications with scaffolding commands and verification agents",
+      "category": "development",
+      "author": {
+        "name": "Ashwin Bhat",
+        "email": "ashwin@anthropic.com"
+      },
+      "source": "./plugins/agent-sdk-dev",
+      "homepage": "https://github.com/quasars-dev/quasars.tools/tree/main/plugins/agent-sdk-dev",
+      "keywords": [
+        "agent-sdk",
+        "scaffolding",
+        "python",
+        "typescript",
+        "development"
+      ],
+      "commands": ["new-sdk-app"],
+      "agents": ["agent-sdk-verifier-py", "agent-sdk-verifier-ts"]
+    },
+    {
+      "name": "code-review",
+      "version": "1.0.0",
+      "description": "Automated Pull Request Code Review - Multiple specialized agents with confidence-based scoring to filter false positives and provide high-confidence issue detection (≥80%)",
+      "category": "productivity",
+      "author": {
+        "name": "Boris Cherny",
+        "email": "boris@anthropic.com"
+      },
+      "source": "./plugins/code-review",
+      "homepage": "https://github.com/quasars-dev/quasars.tools/tree/main/plugins/code-review",
+      "keywords": [
+        "code-review",
+        "pull-request",
+        "quality",
+        "automation",
+        "ci-cd"
+      ],
+      "commands": ["code-review"]
+    },
+    {
+      "name": "commit-commands",
+      "version": "1.0.0",
+      "description": "Git Workflow Automation - Simplifies common git operations with streamlined commands for committing, pushing, and creating pull requests",
+      "category": "productivity",
+      "author": {
+        "name": "Anthropic",
+        "email": "support@anthropic.com"
+      },
+      "source": "./plugins/commit-commands",
+      "homepage": "https://github.com/quasars-dev/quasars.tools/tree/main/plugins/commit-commands",
+      "keywords": [
+        "git",
+        "workflow",
+        "commit",
+        "push",
+        "pull-request"
+      ],
+      "commands": ["commit", "commit-push-pr", "clean_gone"]
+    },
+    {
+      "name": "feature-dev",
+      "version": "1.0.0",
+      "description": "Comprehensive Feature Development Workflow - Provides a structured 7-phase approach with specialized agents for codebase exploration, architecture design, and quality review",
+      "category": "development",
+      "author": {
+        "name": "Sid Bidasaria",
+        "email": "sbidasaria@anthropic.com"
+      },
+      "source": "./plugins/feature-dev",
+      "homepage": "https://github.com/quasars-dev/quasars.tools/tree/main/plugins/feature-dev",
+      "keywords": [
+        "feature-development",
+        "architecture",
+        "codebase-analysis",
+        "design",
+        "workflow"
+      ],
+      "commands": ["feature-dev"],
+      "agents": ["code-explorer", "code-architect", "code-reviewer"]
+    },
+    {
+      "name": "pr-review-toolkit",
+      "version": "1.0.0",
+      "description": "PR Review Toolkit - Comprehensive specialized review agents for code comments, test coverage, error handling, type design, code quality, and simplification",
+      "category": "productivity",
+      "author": {
+        "name": "Daisy",
+        "email": "daisy@anthropic.com"
+      },
+      "source": "./plugins/pr-review-toolkit",
+      "homepage": "https://github.com/quasars-dev/quasars.tools/tree/main/plugins/pr-review-toolkit",
+      "keywords": [
+        "pr-review",
+        "code-quality",
+        "testing",
+        "error-handling",
+        "type-design"
+      ],
+      "agents": [
+        "comment-analyzer",
+        "error-handling-specialist",
+        "test-coverage-expert",
+        "type-design-expert",
+        "code-quality-expert",
+        "code-simplifier"
+      ]
+    },
+    {
+      "name": "explanatory-output-style",
+      "version": "1.0.0",
+      "description": "Explanatory Output Style - Adds educational insights about implementation choices and codebase patterns with detailed explanations",
+      "category": "development",
+      "author": {
+        "name": "Dickson Tsai",
+        "email": "dickson@anthropic.com"
+      },
+      "source": "./plugins/explanatory-output-style",
+      "homepage": "https://github.com/quasars-dev/quasars.tools/tree/main/plugins/explanatory-output-style",
+      "keywords": [
+        "output-style",
+        "documentation",
+        "explanations",
+        "learning"
+      ]
+    },
+    {
+      "name": "security-guidance",
+      "version": "1.0.0",
+      "description": "Security Guidance - Security reminder hook that warns about potential security issues including command injection, XSS, and unsafe code patterns",
+      "category": "security",
+      "author": {
+        "name": "David Dworken",
+        "email": "dworken@anthropic.com"
+      },
+      "source": "./plugins/security-guidance",
+      "homepage": "https://github.com/quasars-dev/quasars.tools/tree/main/plugins/security-guidance",
+      "keywords": [
+        "security",
+        "hooks",
+        "vulnerability",
+        "xss",
+        "injection"
+      ],
+      "hooks": true
+    }
+  ]
+}
