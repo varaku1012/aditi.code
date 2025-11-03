@@ -20,7 +20,6 @@
     "tech-stack-detection"
   ],
   "commands": [
-    "./commands/steering-setup.md",
     "./commands/steering-generate.md",
     "./commands/steering-update.md",
     "./commands/steering-status.md",
