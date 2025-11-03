@@ -7,10 +7,7 @@
     "email": "contact@varaku.com"
   },
   "homepage": "https://github.com/varaku1012/aditi.code",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/varaku1012/aditi.code.git"
-  },
+  "repository": "https://github.com/varaku1012/aditi.code.git",
   "license": "MIT",
   "keywords": [
     "steering-context",
@@ -23,29 +20,27 @@
     "tech-stack-detection"
   ],
   "commands": [
-    "steering-setup",
-    "steering-generate",
-    "steering-update",
-    "steering-status",
-    "steering-clean",
-    "steering-config",
-    "steering-resume",
-    "steering-export"
+    "./commands/steering-setup.md",
+    "./commands/steering-generate.md",
+    "./commands/steering-update.md",
+    "./commands/steering-status.md",
+    "./commands/steering-clean.md",
+    "./commands/steering-config.md",
+    "./commands/steering-resume.md",
+    "./commands/steering-export.md"
   ],
   "agents": [
-    "structure-analyst",
-    "domain-expert",
-    "pattern-detective",
-    "quality-auditor",
-    "context-synthesizer",
-    "memory-coordinator",
-    "integration-mapper",
-    "ui-specialist",
-    "test-strategist",
-    "database-analyst",
-    "messaging-architect",
-    "api-design-analyst"
-  ],
-  "category": "development",
-  "minimumClaudeVersion": "1.0.0"
+    "./agents/structure-analyst.md",
+    "./agents/domain-expert.md",
+    "./agents/pattern-detective.md",
+    "./agents/quality-auditor.md",
+    "./agents/context-synthesizer.md",
+    "./agents/memory-coordinator.md",
+    "./agents/integration-mapper.md",
+    "./agents/ui-specialist.md",
+    "./agents/test-strategist.md",
+    "./agents/database-analyst.md",
+    "./agents/messaging-architect.md",
+    "./agents/api-design-analyst.md"
+  ]
 }
