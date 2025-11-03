@@ -1,0 +1,51 @@
+{
+  "name": "steering-context-generator",
+  "version": "1.0.0",
+  "description": "Comprehensive codebase analysis and steering context generation for AI agents. Automatically detects project type (Next.js, React, Python, Rust, Go, monorepos) and generates architecture documentation, design patterns, quality reports, and AI-ready context files. Features parallel execution (55% faster), incremental updates, and zero configuration.",
+  "author": {
+    "name": "Varaku",
+    "email": "contact@varaku.com"
+  },
+  "homepage": "https://github.com/varaku1012/aditi.code",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/varaku1012/aditi.code.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "steering-context",
+    "codebase-analysis",
+    "architecture-documentation",
+    "ai-context",
+    "code-intelligence",
+    "documentation-generator",
+    "project-analysis",
+    "tech-stack-detection"
+  ],
+  "commands": [
+    "steering-setup",
+    "steering-generate",
+    "steering-update",
+    "steering-status",
+    "steering-clean",
+    "steering-config",
+    "steering-resume",
+    "steering-export"
+  ],
+  "agents": [
+    "structure-analyst",
+    "domain-expert",
+    "pattern-detective",
+    "quality-auditor",
+    "context-synthesizer",
+    "memory-coordinator",
+    "integration-mapper",
+    "ui-specialist",
+    "test-strategist",
+    "database-analyst",
+    "messaging-architect",
+    "api-design-analyst"
+  ],
+  "category": "development",
+  "minimumClaudeVersion": "1.0.0"
+}
