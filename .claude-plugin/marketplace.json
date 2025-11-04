@@ -1,16 +1,19 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "aditi-code-plugins",
-  "version": "1.0.0",
-  "description": "Production-ready Claude Code plugins for codebase analysis, context generation, and AI-assisted development workflows",
+  "version": "1.1.0",
+  "description": "Production-ready Claude Code plugins for AI-assisted development. Includes codebase analysis, feature development workflows, automated code review, git automation, security guidance, and Agent SDK scaffolding.",
   "owner": {
     "name": "Varaku",
     "email": "contact@varaku.com"
   },
+  "repository": "https://github.com/varaku1012/aditi.code",
+  "homepage": "https://github.com/varaku1012/aditi.code",
+  "license": "MIT",
   "plugins": [
     {
       "name": "steering-context-generator",
-      "description": "Comprehensive codebase analysis and steering context generation for AI agents. Automatically detects project type and generates architecture documentation, design patterns, quality reports, and AI-ready context files.",
+      "description": "Comprehensive codebase analysis and steering context generation for AI agents. Automatically detects project type (Next.js, React, Python, Rust, Go, monorepos) and generates architecture documentation, design patterns, quality reports, and AI-ready context files. Features 12 specialized agents, parallel execution (55% faster), incremental updates, and zero configuration.",
       "version": "1.0.0",
       "author": {
         "name": "Varaku",
@@ -20,12 +23,205 @@
       "category": "development",
       "homepage": "https://github.com/varaku1012/aditi.code/blob/main/plugins/steering-context-generator/README.md",
       "keywords": [
+        "steering-context",
         "codebase-analysis",
-        "documentation",
+        "architecture-documentation",
         "ai-context",
+        "code-intelligence",
+        "documentation-generator",
+        "project-analysis",
+        "tech-stack-detection",
+        "quality-insights"
+      ],
+      "commands": [
+        "/steering-generate",
+        "/steering-update",
+        "/steering-status",
+        "/steering-clean",
+        "/steering-config",
+        "/steering-resume",
+        "/steering-export"
+      ],
+      "agents": 12
+    },
+    {
+      "name": "feature-dev",
+      "description": "Comprehensive 7-phase feature development workflow with specialized agents for codebase exploration, architecture design, implementation, and quality review. Ensures new features integrate seamlessly with existing patterns and maintain code quality.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Sid Bidasaria",
+        "email": "sbidasaria@anthropic.com"
+      },
+      "source": "./plugins/feature-dev",
+      "category": "development",
+      "homepage": "https://github.com/varaku1012/aditi.code/blob/main/plugins/feature-dev/README.md",
+      "keywords": [
+        "feature-development",
+        "workflow",
         "architecture",
-        "steering-context"
-      ]
+        "codebase-exploration",
+        "quality-review",
+        "systematic-development"
+      ],
+      "commands": [
+        "/feature-dev"
+      ],
+      "agents": 3
+    },
+    {
+      "name": "code-review",
+      "description": "Automated code review for pull requests using multiple specialized agents with confidence-based scoring (≥80% threshold). Focuses on high-impact issues while filtering false positives. Provides detailed, actionable feedback on code quality, security, and best practices.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Boris Cherny",
+        "email": "boris@anthropic.com"
+      },
+      "source": "./plugins/code-review",
+      "category": "quality",
+      "homepage": "https://github.com/varaku1012/aditi.code/blob/main/plugins/code-review/README.md",
+      "keywords": [
+        "code-review",
+        "pull-request",
+        "quality-assurance",
+        "automated-review",
+        "confidence-scoring"
+      ],
+      "commands": [
+        "/code-review"
+      ],
+      "agents": 1
+    },
+    {
+      "name": "pr-review-toolkit",
+      "description": "Comprehensive PR review toolkit with 6 specialized agents focusing on different aspects: comments quality, test coverage, error handling, type design, code quality, and code simplification. Provides in-depth analysis beyond standard code review.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Daisy",
+        "email": "daisy@anthropic.com"
+      },
+      "source": "./plugins/pr-review-toolkit",
+      "category": "quality",
+      "homepage": "https://github.com/varaku1012/aditi.code/blob/main/plugins/pr-review-toolkit/README.md",
+      "keywords": [
+        "pr-review",
+        "specialized-agents",
+        "test-analysis",
+        "type-design",
+        "error-handling",
+        "code-simplification"
+      ],
+      "commands": [
+        "/review-pr"
+      ],
+      "agents": 6
+    },
+    {
+      "name": "commit-commands",
+      "description": "Streamline your git workflow with intelligent commands for committing, pushing, and creating pull requests. Automatically generates meaningful commit messages, follows conventional commit standards, and integrates with GitHub for PR creation.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Anthropic",
+        "email": "support@anthropic.com"
+      },
+      "source": "./plugins/commit-commands",
+      "category": "productivity",
+      "homepage": "https://github.com/varaku1012/aditi.code/blob/main/plugins/commit-commands/README.md",
+      "keywords": [
+        "git",
+        "commit",
+        "workflow",
+        "automation",
+        "pull-request",
+        "github"
+      ],
+      "commands": [
+        "/commit",
+        "/commit-push-pr",
+        "/clean_gone"
+      ],
+      "agents": 0
+    },
+    {
+      "name": "agent-sdk-dev",
+      "description": "Claude Agent SDK development scaffolding plugin. Quickly bootstrap new Agent SDK applications in Python or TypeScript with best practices, proper project structure, and verification agents to ensure SDK compliance.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Ashwin Bhat",
+        "email": "ashwin@anthropic.com"
+      },
+      "source": "./plugins/agent-sdk-dev",
+      "category": "development",
+      "homepage": "https://github.com/varaku1012/aditi.code/blob/main/plugins/agent-sdk-dev/README.md",
+      "keywords": [
+        "agent-sdk",
+        "scaffolding",
+        "python",
+        "typescript",
+        "project-setup",
+        "sdk-development"
+      ],
+      "commands": [
+        "/new-sdk-app"
+      ],
+      "agents": 2
+    },
+    {
+      "name": "security-guidance",
+      "description": "Proactive security reminder hook that warns about potential security vulnerabilities when editing files. Detects command injection, XSS, SQL injection, unsafe code patterns, and other OWASP Top 10 issues. Helps prevent security issues before they're committed.",
+      "version": "1.0.0",
+      "author": {
+        "name": "David Dworken",
+        "email": "dworken@anthropic.com"
+      },
+      "source": "./plugins/security-guidance",
+      "category": "security",
+      "homepage": "https://github.com/varaku1012/aditi.code/blob/main/plugins/security-guidance/README.md",
+      "keywords": [
+        "security",
+        "vulnerability-detection",
+        "command-injection",
+        "xss",
+        "sql-injection",
+        "owasp",
+        "proactive-warnings"
+      ],
+      "commands": [],
+      "agents": 0,
+      "hooks": true
+    },
+    {
+      "name": "explanatory-output-style",
+      "description": "Adds educational insights about implementation choices and codebase patterns. Mimics the deprecated Explanatory output style by providing context about why certain patterns are used, trade-offs of different approaches, and learning opportunities during development.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Dickson Tsai",
+        "email": "dickson@anthropic.com"
+      },
+      "source": "./plugins/explanatory-output-style",
+      "category": "productivity",
+      "homepage": "https://github.com/varaku1012/aditi.code/blob/main/plugins/explanatory-output-style/README.md",
+      "keywords": [
+        "educational",
+        "insights",
+        "patterns",
+        "learning",
+        "explanatory",
+        "context"
+      ],
+      "commands": [],
+      "agents": 0,
+      "hooks": true
     }
-  ]
+  ],
+  "stats": {
+    "total_plugins": 8,
+    "total_commands": 15,
+    "total_agents": 24,
+    "categories": {
+      "development": 3,
+      "quality": 2,
+      "productivity": 2,
+      "security": 1
+    }
+  }
 }
