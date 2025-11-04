@@ -32,17 +32,7 @@
         "project-analysis",
         "tech-stack-detection",
         "quality-insights"
-      ],
-      "commands": [
-        "/steering-generate",
-        "/steering-update",
-        "/steering-status",
-        "/steering-clean",
-        "/steering-config",
-        "/steering-resume",
-        "/steering-export"
-      ],
-      "agents": 12
+      ]
     },
     {
       "name": "feature-dev",
@@ -62,11 +52,7 @@
         "codebase-exploration",
         "quality-review",
         "systematic-development"
-      ],
-      "commands": [
-        "/feature-dev"
-      ],
-      "agents": 3
+      ]
     },
     {
       "name": "code-review",
@@ -85,11 +71,7 @@
         "quality-assurance",
         "automated-review",
         "confidence-scoring"
-      ],
-      "commands": [
-        "/code-review"
-      ],
-      "agents": 1
+      ]
     },
     {
       "name": "pr-review-toolkit",
@@ -109,11 +91,7 @@
         "type-design",
         "error-handling",
         "code-simplification"
-      ],
-      "commands": [
-        "/review-pr"
-      ],
-      "agents": 6
+      ]
     },
     {
       "name": "commit-commands",
@@ -133,13 +111,7 @@
         "automation",
         "pull-request",
         "github"
-      ],
-      "commands": [
-        "/commit",
-        "/commit-push-pr",
-        "/clean_gone"
-      ],
-      "agents": 0
+      ]
     },
     {
       "name": "agent-sdk-dev",
@@ -159,11 +131,7 @@
         "typescript",
         "project-setup",
         "sdk-development"
-      ],
-      "commands": [
-        "/new-sdk-app"
-      ],
-      "agents": 2
+      ]
     },
     {
       "name": "security-guidance",
@@ -184,10 +152,7 @@
         "sql-injection",
         "owasp",
         "proactive-warnings"
-      ],
-      "commands": [],
-      "agents": 0,
-      "hooks": true
+      ]
     },
     {
       "name": "explanatory-output-style",
@@ -207,10 +172,7 @@
         "learning",
         "explanatory",
         "context"
-      ],
-      "commands": [],
-      "agents": 0,
-      "hooks": true
+      ]
     }
   ],
   "stats": {
