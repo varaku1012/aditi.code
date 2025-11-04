@@ -1,0 +1,284 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "Steering Context Generator - Shared Glossary",
+  "description": "Consistent terminology and standards used by all 12 analysis agents",
+  "version": "1.0.0",
+  "last_updated": "2025-11-04",
+
+  "quality_scales": {
+    "general_quality": {
+      "scale": "1-10",
+      "thresholds": {
+        "critical": "1-3 (immediate action required)",
+        "poor": "4-5 (significant improvements needed)",
+        "fair": "6-7 (acceptable with minor improvements)",
+        "good": "8-9 (solid quality, minor optimizations possible)",
+        "excellent": "10 (production-ready, best practices followed)"
+      }
+    },
+    "maturity_level": {
+      "scale": "1-5",
+      "levels": {
+        "1": "Ad-hoc (no systematic approach)",
+        "2": "Emerging (some patterns, inconsistent)",
+        "3": "Defined (documented patterns, mostly consistent)",
+        "4": "Managed (enforced standards, metrics tracked)",
+        "5": "Optimized (continuous improvement, fully systematic)"
+      }
+    },
+    "richardson_rest_maturity": {
+      "scale": "0-3",
+      "levels": {
+        "0": "The Swamp of POX (Plain Old XML - RPC-style endpoints)",
+        "1": "Resources (multiple endpoints, single HTTP method)",
+        "2": "HTTP Verbs (proper use of GET/POST/PUT/DELETE)",
+        "3": "Hypermedia Controls (HATEOAS - links in responses)"
+      }
+    },
+    "confidence_level": {
+      "scale": "percentage",
+      "thresholds": {
+        "low": "0-60% (speculative, needs validation)",
+        "medium": "61-79% (likely correct, some uncertainty)",
+        "high": "80-100% (verified, actionable)"
+      },
+      "note": "Only report findings with ≥80% confidence"
+    }
+  },
+
+  "architecture_patterns": {
+    "categories": {
+      "creational": ["Singleton", "Factory", "Builder", "Prototype"],
+      "structural": ["Adapter", "Facade", "Proxy", "Decorator", "Composite"],
+      "behavioral": ["Observer", "Strategy", "Command", "State Machine"],
+      "architectural": ["MVC", "MVVM", "Layered", "Microservices", "Event-Driven", "CQRS"]
+    },
+    "quality_indicators": {
+      "consistency": "How uniformly patterns are applied (1-10)",
+      "appropriateness": "How well patterns fit use cases (1-10)",
+      "documentation": "How well patterns are documented (1-10)"
+    }
+  },
+
+  "tech_stack_domains": {
+    "frontend": {
+      "frameworks": ["React", "Vue", "Angular", "Svelte", "Next.js", "Remix"],
+      "state_management": ["Redux", "Zustand", "MobX", "XState", "Jotai", "Context API"],
+      "styling": ["Tailwind CSS", "CSS Modules", "styled-components", "Emotion", "Sass"]
+    },
+    "backend": {
+      "nodejs": ["Express", "NestJS", "Fastify", "Hapi", "Koa"],
+      "python": ["Django", "FastAPI", "Flask", "Tornado"],
+      "go": ["Gin", "Echo", "Fiber", "Chi"],
+      "rust": ["Actix", "Rocket", "Warp"]
+    },
+    "database": {
+      "relational": ["PostgreSQL", "MySQL", "SQLite"],
+      "nosql": ["MongoDB", "Redis", "DynamoDB"],
+      "orms": ["Prisma", "Drizzle", "TypeORM", "Sequelize", "SQLAlchemy", "Django ORM"]
+    },
+    "messaging": {
+      "patterns": ["Pub/Sub", "Message Queue", "Event Streaming", "Request/Reply"],
+      "technologies": ["RabbitMQ", "Kafka", "Redis Streams", "AWS SQS", "Google Pub/Sub"]
+    }
+  },
+
+  "security_classifications": {
+    "vulnerability_severity": {
+      "critical": "CVSS 9.0-10.0 (immediate exploitation risk)",
+      "high": "CVSS 7.0-8.9 (significant risk, prioritize fix)",
+      "medium": "CVSS 4.0-6.9 (moderate risk, fix in next cycle)",
+      "low": "CVSS 0.1-3.9 (minimal risk, fix when convenient)"
+    },
+    "owasp_top_10": [
+      "A01:2021 - Broken Access Control",
+      "A02:2021 - Cryptographic Failures",
+      "A03:2021 - Injection",
+      "A04:2021 - Insecure Design",
+      "A05:2021 - Security Misconfiguration",
+      "A06:2021 - Vulnerable Components",
+      "A07:2021 - Authentication Failures",
+      "A08:2021 - Software/Data Integrity Failures",
+      "A09:2021 - Security Logging Failures",
+      "A10:2021 - Server-Side Request Forgery"
+    ]
+  },
+
+  "testing_categories": {
+    "types": {
+      "unit": "Tests individual functions/components in isolation",
+      "integration": "Tests interactions between components/services",
+      "e2e": "Tests complete user workflows end-to-end",
+      "contract": "Tests API contracts between services",
+      "performance": "Tests system performance under load"
+    },
+    "coverage_metrics": {
+      "line_coverage": "% of code lines executed by tests",
+      "branch_coverage": "% of conditional branches tested",
+      "function_coverage": "% of functions called by tests",
+      "mutation_coverage": "% of code mutations that fail tests (effectiveness)"
+    },
+    "quality_indicators": {
+      "flakiness": "How often tests fail non-deterministically (lower is better)",
+      "maintainability": "How easy tests are to update when code changes (1-10)",
+      "readability": "How clear test intent and assertions are (1-10)"
+    }
+  },
+
+  "database_performance": {
+    "common_issues": {
+      "n_plus_1": "Executing N+1 queries in a loop instead of using joins/includes",
+      "missing_indexes": "Queries scanning full tables instead of using indexes",
+      "unbounded_queries": "SELECT * or no pagination causing memory issues",
+      "lock_contention": "Transactions holding locks too long"
+    },
+    "optimization_impact": {
+      "high": "10x+ performance improvement (e.g., adding critical index)",
+      "medium": "2-10x improvement (e.g., query optimization)",
+      "low": "<2x improvement (e.g., minor schema tweaks)"
+    }
+  },
+
+  "ui_design_standards": {
+    "wcag_compliance": {
+      "level_a": "Minimum accessibility (basic support)",
+      "level_aa": "Standard accessibility (recommended for production)",
+      "level_aaa": "Enhanced accessibility (specialized contexts)"
+    },
+    "design_system_elements": {
+      "tokens": "Design variables (colors, spacing, typography)",
+      "components": "Reusable UI elements (Button, Input, Card)",
+      "patterns": "Composition guidelines (layouts, flows)",
+      "documentation": "Usage guidelines, do's/don'ts"
+    }
+  },
+
+  "code_quality_dimensions": {
+    "maintainability": {
+      "description": "How easy code is to understand, modify, and extend",
+      "factors": ["Readability", "Modularity", "Documentation", "Naming", "Complexity"]
+    },
+    "reliability": {
+      "description": "How consistently code works correctly",
+      "factors": ["Error handling", "Edge cases", "Testing", "Type safety"]
+    },
+    "performance": {
+      "description": "How efficiently code uses resources",
+      "factors": ["Time complexity", "Space complexity", "I/O efficiency", "Caching"]
+    },
+    "security": {
+      "description": "How well code protects against threats",
+      "factors": ["Input validation", "Authentication", "Authorization", "Data protection"]
+    }
+  },
+
+  "technical_debt_types": {
+    "deliberate_prudent": "Conscious decision to go fast now, documented for later",
+    "deliberate_reckless": "Knowingly cutting corners without documentation",
+    "inadvertent_prudent": "Learning better approach after implementation",
+    "inadvertent_reckless": "Poor practices due to lack of knowledge"
+  },
+
+  "agent_coordination": {
+    "execution_groups": {
+      "group_1_foundation": [
+        "structure-analyst",
+        "integration-mapper",
+        "ui-specialist"
+      ],
+      "group_2_deep_analysis": [
+        "domain-expert",
+        "pattern-detective",
+        "test-strategist",
+        "database-analyst"
+      ],
+      "group_3_quality_synthesis": [
+        "quality-auditor",
+        "messaging-architect",
+        "api-design-analyst",
+        "context-synthesizer"
+      ],
+      "orchestration": [
+        "memory-coordinator"
+      ]
+    },
+    "execution_strategy": "Groups 1-3 run in parallel; memory-coordinator runs throughout",
+    "dependency_rules": {
+      "context_synthesizer": "Depends on all other agents completing",
+      "memory_coordinator": "No dependencies, runs concurrently"
+    }
+  },
+
+  "output_standards": {
+    "confidence_threshold": "Only include findings with ≥80% confidence",
+    "prioritization": "Order findings by business impact (Critical → High → Medium → Low)",
+    "actionability": "Every finding must include specific remediation steps",
+    "cross_referencing": "Link related findings across agents",
+    "for_ai_agents_section": "Every agent output must include explicit guidance for AI agents"
+  },
+
+  "terminology_standards": {
+    "use_these_terms": {
+      "codebase": "Preferred over 'code base', 'repository', 'project code'",
+      "component": "UI building block (not 'widget', 'element')",
+      "service": "Backend API or microservice (not 'endpoint', 'API')",
+      "pattern": "Design pattern (not 'approach', 'method')",
+      "trade-off": "Decision with pros/cons (not 'compromise', 'balance')",
+      "technical_debt": "Deferred work with interest (not 'bad code', 'hacky solution')",
+      "quality_score": "1-10 numeric rating (not 'grade', 'rating')",
+      "business_impact": "Effect on users/revenue (not 'importance', 'priority')"
+    },
+    "avoid_these_terms": {
+      "TODO": "Use 'Recommended action' or 'Remediation'",
+      "FIXME": "Use 'Critical issue requiring fix'",
+      "hack": "Use 'temporary solution' or 'workaround'",
+      "ugly": "Use specific quality concerns (e.g., 'low maintainability')",
+      "obviously": "Avoid subjective qualifiers",
+      "just": "Avoid minimizing complexity ('just add a check' → 'add validation')"
+    }
+  },
+
+  "reporting_templates": {
+    "finding_structure": {
+      "title": "Concise description (max 10 words)",
+      "category": "One of: Architecture, Security, Performance, Quality, Testing, Design",
+      "severity": "Critical | High | Medium | Low",
+      "confidence": "Percentage (80-100 for included findings)",
+      "location": "File path(s) and line numbers",
+      "description": "What the issue is (2-3 sentences)",
+      "why_it_matters": "Business/technical impact (1-2 sentences)",
+      "trade_offs": "Pros/cons of current approach",
+      "remediation": "Specific steps to fix (numbered list)",
+      "examples": "Code snippets showing before/after (optional)"
+    },
+    "quality_score_structure": {
+      "dimension": "What's being measured",
+      "score": "1-10 numeric value",
+      "rationale": "Why this score (1-2 sentences)",
+      "key_factors": "Top 3 factors affecting score",
+      "improvement_potential": "Maximum achievable score with recommended changes"
+    }
+  },
+
+  "file_naming_conventions": {
+    "memory_files": {
+      "glossary": ".claude/memory/glossary.json",
+      "agent_checkpoints": ".claude/memory/checkpoints/{agent-name}-{timestamp}.json",
+      "conflict_log": ".claude/memory/conflicts.json"
+    },
+    "output_files": {
+      "architecture": ".claude/steering/ARCHITECTURE.md",
+      "ai_context": ".claude/steering/AI_CONTEXT.md",
+      "codebase_guide": ".claude/steering/CODEBASE_GUIDE.md",
+      "quality_report": ".claude/steering/QUALITY_REPORT.md",
+      "patterns": ".claude/steering/PATTERNS.md"
+    }
+  },
+
+  "version_control": {
+    "glossary_versioning": "Semantic versioning (MAJOR.MINOR.PATCH)",
+    "breaking_changes": "Increment MAJOR when terminology changes require agent updates",
+    "additions": "Increment MINOR when adding new categories/terms",
+    "fixes": "Increment PATCH for clarifications without semantic changes"
+  }
+}
