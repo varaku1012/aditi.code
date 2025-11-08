@@ -42,6 +42,8 @@ The following documents are created in `.claude/steering/`:
 | `DATABASE_CONTEXT.md` | Database detected | Schema, DAL patterns |
 | `MESSAGING_GUIDE.md` | Queues/events found | Event catalog, pub/sub |
 | `API_DESIGN_GUIDE.md` | API endpoints found | REST standards, error handling |
+| `STRIPE_PAYMENT_CONTEXT.md` | Stripe integration found | Payment flows, webhook handlers, PCI compliance |
+| `AUTH0_OAUTH_CONTEXT.md` | Auth0 integration found | OAuth flows, configuration, security assessment |
 
 ## How It Works
 
@@ -54,6 +56,7 @@ The system automatically detects:
 - Frameworks (Next.js, React, Django, FastAPI, etc.)
 - Databases (Prisma, Drizzle, TypeORM, MongoDB, etc.)
 - Testing frameworks (Jest, Vitest, pytest, etc.)
+- **Auth0 OAuth integration** (if @auth0 SDK detected)
 
 **Project Structure**:
 - Monorepo vs single-package
@@ -83,6 +86,8 @@ Based on detection, the system selects appropriate agents:
 - `database-analyst`: If database schemas found
 - `messaging-architect`: If queues/events found
 - `api-design-analyst`: If API routes found
+- **`auth0-detector`**: If Auth0 SDK imports or configuration found
+- **`oauth-security-auditor`**: If Auth0 integration found (runs after auth0-detector)
 
 **Synthesis Agent** (Always Final):
 - `context-synthesizer`: Generate final documentation
@@ -104,31 +109,40 @@ Group 2 (Analysis) - Depends on Group 1:
   database-analyst ───┘
 
 Group 3 (Architecture) - Depends on Groups 1 & 2:
-  messaging-architect ─┐
-  api-design-analyst ──┤ Run in parallel
-  quality-auditor ─────┘
+  messaging-architect ──┐
+  api-design-analyst ───┤
+  stripe-payment-expert ├ Run in parallel
+  auth0-detector ───────┤
+  quality-auditor ──────┘
+
+Group 3B (Security Audit) - Depends on Group 3 (if Auth0 detected):
+  oauth-security-auditor (sequential, after auth0-detector)
 
 Group 4 (Synthesis) - Depends on all:
   context-synthesizer (sequential)
 ```
 
 **Time Savings**: Parallel execution is 55% faster than sequential!
+**Note**: Auth0 security audit runs automatically after Auth0 detection, adding ~10 minutes if Auth0 is present.
 
 ### Phase 4: Output Generation
 
 Each agent contributes to final documents:
 
 ```
-structure-analyst    →  ARCHITECTURE.md (structure section)
-domain-expert        →  DOMAIN_CONTEXT.md (complete)
-pattern-detective    →  ARCHITECTURE.md (patterns section)
-ui-specialist        →  UI_DESIGN_SYSTEM.md (complete)
-test-strategist      →  TESTING_GUIDE.md (complete)
-database-analyst     →  DATABASE_CONTEXT.md (complete)
-messaging-architect  →  MESSAGING_GUIDE.md (complete)
-api-design-analyst   →  API_DESIGN_GUIDE.md (complete)
-quality-auditor      →  QUALITY_REPORT.md (complete)
-context-synthesizer  →  AI_CONTEXT.md, CODEBASE_GUIDE.md
+structure-analyst       →  ARCHITECTURE.md (structure section)
+domain-expert           →  DOMAIN_CONTEXT.md (complete)
+pattern-detective       →  ARCHITECTURE.md (patterns section)
+ui-specialist           →  UI_DESIGN_SYSTEM.md (complete)
+test-strategist         →  TESTING_GUIDE.md (complete)
+database-analyst        →  DATABASE_CONTEXT.md (complete)
+messaging-architect     →  MESSAGING_GUIDE.md (complete)
+api-design-analyst      →  API_DESIGN_GUIDE.md (complete)
+stripe-payment-expert   →  STRIPE_PAYMENT_CONTEXT.md (complete, if Stripe found)
+auth0-detector          →  AUTH0_OAUTH_CONTEXT.md (complete, if Auth0 found)
+oauth-security-auditor  →  AUTH0_SECURITY_AUDIT.md (complete, if Auth0 found)
+quality-auditor         →  QUALITY_REPORT.md (complete)
+context-synthesizer     →  AI_CONTEXT.md, CODEBASE_GUIDE.md
 ```
 
 ## Execution Workflow
@@ -232,7 +246,7 @@ Task 4 - database-analyst (if database):
 **Depends on**: Groups 1 & 2 outputs
 
 ```markdown
-Invoke three Task tools simultaneously:
+Invoke five Task tools simultaneously:
 
 Task 1 - messaging-architect (if messaging):
   Analyze events and queues
@@ -244,10 +258,35 @@ Task 2 - api-design-analyst (if APIs):
   Create API_DESIGN_GUIDE.md
   Store in: .claude/memory/api-design/
 
-Task 3 - quality-auditor:
+Task 3 - stripe-payment-expert (if Stripe detected):
+  Analyze Stripe payment integration
+  Create STRIPE_PAYMENT_CONTEXT.md
+  Store in: .claude/steering/
+
+Task 4 - auth0-detector (if Auth0 detected):
+  Analyze Auth0 OAuth implementation
+  Create AUTH0_OAUTH_CONTEXT.md
+  Store in: .claude/steering/
+
+Task 5 - quality-auditor:
   Perform security and quality audit using all previous outputs
   Create QUALITY_REPORT.md
   Store in: .claude/memory/quality/
+```
+
+### Step 5B: Auth0 Security Audit (if Auth0 detected)
+
+**Depends on**: Step 5 outputs from auth0-detector
+
+```markdown
+Invoke single Task tool (sequential, after auth0-detector):
+
+Task - oauth-security-auditor:
+  Deep security analysis of Auth0 implementation
+  Review for GDPR, HIPAA, SOC2 compliance
+  Identify OAuth vulnerabilities
+  Create AUTH0_SECURITY_AUDIT.md
+  Store in: .claude/steering/
 ```
 
 ### Step 6: Final Synthesis (Group 4)
@@ -269,11 +308,13 @@ Task - context-synthesizer:
     - .claude/memory/messaging/
     - .claude/memory/api-design/
     - .claude/memory/quality/
+    - .claude/steering/ (STRIPE_PAYMENT_CONTEXT.md, AUTH0_OAUTH_CONTEXT.md, AUTH0_SECURITY_AUDIT.md)
 
   Generate final documents:
     - ARCHITECTURE.md (comprehensive system architecture)
     - AI_CONTEXT.md (optimized for AI agents)
     - CODEBASE_GUIDE.md (developer onboarding)
+    - Include references to Auth0 and Stripe integrations if present
 
   Store in: .claude/steering/
 ```
@@ -301,7 +342,10 @@ cat > .claude/memory/orchestration/current_session.json << EOF
     ".claude/steering/TESTING_GUIDE.md",
     ".claude/steering/DATABASE_CONTEXT.md",
     ".claude/steering/MESSAGING_GUIDE.md",
-    ".claude/steering/API_DESIGN_GUIDE.md"
+    ".claude/steering/API_DESIGN_GUIDE.md",
+    ".claude/steering/STRIPE_PAYMENT_CONTEXT.md",
+    ".claude/steering/AUTH0_OAUTH_CONTEXT.md",
+    ".claude/steering/AUTH0_SECURITY_AUDIT.md"
   ]
 }
 EOF

@@ -40,6 +40,9 @@
     "./agents/test-strategist.md",
     "./agents/database-analyst.md",
     "./agents/messaging-architect.md",
-    "./agents/api-design-analyst.md"
+    "./agents/api-design-analyst.md",
+    "./agents/stripe-payment-expert.md",
+    "./agents/auth0-detector.md",
+    "./agents/oauth-security-auditor.md"
   ]
 }

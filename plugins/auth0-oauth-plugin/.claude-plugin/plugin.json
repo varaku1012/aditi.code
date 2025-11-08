@@ -1,0 +1,37 @@
+{
+  "name": "auth0-oauth-plugin",
+  "version": "1.0.0",
+  "description": "Comprehensive Auth0 OAuth 2.0 implementation plugin. Provides setup wizards, implementation guides, security audits, and troubleshooting for Auth0 authentication across web and mobile applications. Supports OIDC flows, PKCE, MFA, social connections, and custom rules.",
+  "author": {
+    "name": "Varaku",
+    "email": "contact@varaku.com"
+  },
+  "homepage": "https://github.com/varaku1012/aditi.code",
+  "repository": "https://github.com/varaku1012/aditi.code.git",
+  "license": "MIT",
+  "keywords": [
+    "auth0",
+    "oauth2",
+    "openid-connect",
+    "authentication",
+    "authorization",
+    "security",
+    "identity-management",
+    "pkce",
+    "mfa",
+    "social-login"
+  ],
+  "commands": [
+    "./commands/oauth-setup-auth0.md",
+    "./commands/oauth-implement.md",
+    "./commands/oauth-security-audit.md",
+    "./commands/oauth-troubleshoot.md",
+    "./commands/oauth-migrate.md"
+  ],
+  "agents": [
+    "./agents/auth0-architect.md",
+    "./agents/oauth-implementation-expert.md",
+    "./agents/auth0-security-specialist.md",
+    "./agents/oauth-integration-mapper.md"
+  ]
+}
