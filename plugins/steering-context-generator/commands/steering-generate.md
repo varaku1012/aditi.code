@@ -46,6 +46,9 @@ The following documents are created in `.claude/steering/`:
 | `AUTH0_OAUTH_CONTEXT.md` | Auth0 integration found | OAuth flows, configuration, security assessment |
 | `PAYLOAD_CMS_CONTEXT.md` | Payload CMS detected | CMS architecture, content models, API configuration |
 | `PAYLOAD_CMS_CONFIG.md` | Payload CMS detected | Configuration analysis, security audit, compliance |
+| `DESIGN_SYSTEM_ARCHITECTURE.md` | Design tokens/components detected | Design token analysis, component library structure, maturity |
+| `UI_FRAMEWORK_GUIDE.md` | UI framework detected (React, Vue, etc.) | Framework configuration, component patterns, best practices |
+| `WEB_UI_DESIGN_CONTEXT.md` | Frontend pages/components detected | Web UI design analysis, accessibility, UX flows, responsive design |
 
 ## How It Works
 
@@ -58,6 +61,8 @@ The system automatically detects:
 - Frameworks (Next.js, React, Django, FastAPI, etc.)
 - Databases (Prisma, Drizzle, TypeORM, MongoDB, etc.)
 - Testing frameworks (Jest, Vitest, pytest, etc.)
+- **UI frameworks** (React, Vue, Angular, Svelte - if detected)
+- **Design system tools** (Tailwind, Shadcn, Storybook, design tokens)
 - **Auth0 OAuth integration** (if @auth0 SDK detected)
 - **Payload CMS integration** (if @payloadcms packages detected)
 
@@ -85,6 +90,9 @@ Based on detection, the system selects appropriate agents:
 
 **Domain-Specific Agents** (Conditional):
 - `ui-specialist`: If frontend components found
+- **`design-system-architect`**: If design tokens/component library detected
+- **`ui-framework-analyzer`**: If UI framework detected (React, Vue, Angular, Svelte)
+- **`web-ui-design-analyzer`**: If frontend pages/components found
 - `test-strategist`: If test files found
 - `database-analyst`: If database schemas found
 - `messaging-architect`: If queues/events found
@@ -103,25 +111,28 @@ Agents execute in intelligent parallel groups:
 
 ```mermaid
 Group 1 (Foundation):
-  structure-analyst ──┐
-  integration-mapper ─┤ Run in parallel
-  ui-specialist ──────┘
+  structure-analyst ───────┐
+  integration-mapper ──────┤ Run in parallel
+  ui-specialist ───────────┘
 
 Group 2 (Analysis) - Depends on Group 1:
-  domain-expert ──────┐
-  pattern-detective ──┤ Run in parallel
-  test-strategist ────┤
-  database-analyst ───┘
+  domain-expert ──────────┐
+  pattern-detective ──────┤
+  test-strategist ────────┤ Run in parallel
+  database-analyst ───────┤
+  design-system-architect ┘
 
-Group 3 (Architecture) - Depends on Groups 1 & 2:
-  messaging-architect ────┐
+Group 3 (UI/Framework/Design) - Depends on Groups 1 & 2:
+  ui-framework-analyzer ──┐
+  web-ui-design-analyzer ─┤ Run in parallel
+  messaging-architect ────┤
   api-design-analyst ─────┤
   stripe-payment-expert ──├ Run in parallel
   auth0-detector ─────────┤
   payload-cms-detector ───┤
   quality-auditor ────────┘
 
-Group 3B (Security Audits) - Depends on Group 3:
+Group 3B (Security & Config Audits) - Depends on Group 3:
   oauth-security-auditor (sequential, after auth0-detector, if Auth0 detected)
   payload-cms-config-analyzer (sequential, after payload-cms-detector, if Payload CMS detected)
 
@@ -130,6 +141,7 @@ Group 4 (Synthesis) - Depends on all:
 ```
 
 **Time Savings**: Parallel execution is 55% faster than sequential!
+**Note**: UI/Framework/Design analysis adds ~30-40 minutes for comprehensive analysis if UI detected.
 **Note**: Auth0 security audit runs automatically after Auth0 detection, adding ~10 minutes if Auth0 is present.
 **Note**: Payload CMS config analysis runs automatically after CMS detection, adding ~10 minutes if Payload CMS is present.
 
@@ -138,21 +150,24 @@ Group 4 (Synthesis) - Depends on all:
 Each agent contributes to final documents:
 
 ```
-structure-analyst           →  ARCHITECTURE.md (structure section)
-domain-expert               →  DOMAIN_CONTEXT.md (complete)
-pattern-detective           →  ARCHITECTURE.md (patterns section)
-ui-specialist               →  UI_DESIGN_SYSTEM.md (complete)
-test-strategist             →  TESTING_GUIDE.md (complete)
-database-analyst            →  DATABASE_CONTEXT.md (complete)
-messaging-architect         →  MESSAGING_GUIDE.md (complete)
-api-design-analyst          →  API_DESIGN_GUIDE.md (complete)
-stripe-payment-expert       →  STRIPE_PAYMENT_CONTEXT.md (complete, if Stripe found)
-auth0-detector              →  AUTH0_OAUTH_CONTEXT.md (complete, if Auth0 found)
-oauth-security-auditor      →  AUTH0_SECURITY_AUDIT.md (complete, if Auth0 found)
-payload-cms-detector        →  PAYLOAD_CMS_CONTEXT.md (complete, if Payload CMS found)
-payload-cms-config-analyzer →  PAYLOAD_CMS_CONFIG.md (complete, if Payload CMS found)
-quality-auditor             →  QUALITY_REPORT.md (complete)
-context-synthesizer         →  AI_CONTEXT.md, CODEBASE_GUIDE.md
+structure-analyst               →  ARCHITECTURE.md (structure section)
+domain-expert                   →  DOMAIN_CONTEXT.md (complete)
+pattern-detective               →  ARCHITECTURE.md (patterns section)
+ui-specialist                   →  UI_DESIGN_SYSTEM.md (complete)
+design-system-architect         →  DESIGN_SYSTEM_ARCHITECTURE.md (complete, if design system found)
+ui-framework-analyzer           →  UI_FRAMEWORK_GUIDE.md (complete, if UI framework found)
+web-ui-design-analyzer          →  WEB_UI_DESIGN_CONTEXT.md (complete, if frontend pages found)
+test-strategist                 →  TESTING_GUIDE.md (complete)
+database-analyst                →  DATABASE_CONTEXT.md (complete)
+messaging-architect             →  MESSAGING_GUIDE.md (complete)
+api-design-analyst              →  API_DESIGN_GUIDE.md (complete)
+stripe-payment-expert           →  STRIPE_PAYMENT_CONTEXT.md (complete, if Stripe found)
+auth0-detector                  →  AUTH0_OAUTH_CONTEXT.md (complete, if Auth0 found)
+oauth-security-auditor          →  AUTH0_SECURITY_AUDIT.md (complete, if Auth0 found)
+payload-cms-detector            →  PAYLOAD_CMS_CONTEXT.md (complete, if Payload CMS found)
+payload-cms-config-analyzer     →  PAYLOAD_CMS_CONFIG.md (complete, if Payload CMS found)
+quality-auditor                 →  QUALITY_REPORT.md (complete)
+context-synthesizer             →  AI_CONTEXT.md, CODEBASE_GUIDE.md
 ```
 
 ## Execution Workflow

@@ -19,7 +19,12 @@
     "project-analysis",
     "tech-stack-detection",
     "auth0-oauth",
-    "payload-cms"
+    "payload-cms",
+    "ui-design",
+    "design-system",
+    "ui-framework",
+    "web-ui",
+    "ux-design"
   ],
   "commands": [
     "./commands/steering-generate.md",
@@ -39,6 +44,9 @@
     "./agents/memory-coordinator.md",
     "./agents/integration-mapper.md",
     "./agents/ui-specialist.md",
+    "./agents/design-system-architect.md",
+    "./agents/ui-framework-analyzer.md",
+    "./agents/web-ui-design-analyzer.md",
     "./agents/test-strategist.md",
     "./agents/database-analyst.md",
     "./agents/messaging-architect.md",
