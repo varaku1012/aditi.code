@@ -17,7 +17,9 @@
     "code-intelligence",
     "documentation-generator",
     "project-analysis",
-    "tech-stack-detection"
+    "tech-stack-detection",
+    "auth0-oauth",
+    "payload-cms"
   ],
   "commands": [
     "./commands/steering-generate.md",
@@ -43,6 +45,8 @@
     "./agents/api-design-analyst.md",
     "./agents/stripe-payment-expert.md",
     "./agents/auth0-detector.md",
-    "./agents/oauth-security-auditor.md"
+    "./agents/oauth-security-auditor.md",
+    "./agents/payload-cms-detector.md",
+    "./agents/payload-cms-config-analyzer.md"
   ]
 }

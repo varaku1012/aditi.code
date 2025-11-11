@@ -44,6 +44,8 @@ The following documents are created in `.claude/steering/`:
 | `API_DESIGN_GUIDE.md` | API endpoints found | REST standards, error handling |
 | `STRIPE_PAYMENT_CONTEXT.md` | Stripe integration found | Payment flows, webhook handlers, PCI compliance |
 | `AUTH0_OAUTH_CONTEXT.md` | Auth0 integration found | OAuth flows, configuration, security assessment |
+| `PAYLOAD_CMS_CONTEXT.md` | Payload CMS detected | CMS architecture, content models, API configuration |
+| `PAYLOAD_CMS_CONFIG.md` | Payload CMS detected | Configuration analysis, security audit, compliance |
 
 ## How It Works
 
@@ -57,6 +59,7 @@ The system automatically detects:
 - Databases (Prisma, Drizzle, TypeORM, MongoDB, etc.)
 - Testing frameworks (Jest, Vitest, pytest, etc.)
 - **Auth0 OAuth integration** (if @auth0 SDK detected)
+- **Payload CMS integration** (if @payloadcms packages detected)
 
 **Project Structure**:
 - Monorepo vs single-package
@@ -88,6 +91,8 @@ Based on detection, the system selects appropriate agents:
 - `api-design-analyst`: If API routes found
 - **`auth0-detector`**: If Auth0 SDK imports or configuration found
 - **`oauth-security-auditor`**: If Auth0 integration found (runs after auth0-detector)
+- **`payload-cms-detector`**: If Payload CMS packages detected
+- **`payload-cms-config-analyzer`**: If Payload CMS detected (runs after payload-cms-detector)
 
 **Synthesis Agent** (Always Final):
 - `context-synthesizer`: Generate final documentation
@@ -109,14 +114,16 @@ Group 2 (Analysis) - Depends on Group 1:
   database-analyst ───┘
 
 Group 3 (Architecture) - Depends on Groups 1 & 2:
-  messaging-architect ──┐
-  api-design-analyst ───┤
-  stripe-payment-expert ├ Run in parallel
-  auth0-detector ───────┤
-  quality-auditor ──────┘
+  messaging-architect ────┐
+  api-design-analyst ─────┤
+  stripe-payment-expert ──├ Run in parallel
+  auth0-detector ─────────┤
+  payload-cms-detector ───┤
+  quality-auditor ────────┘
 
-Group 3B (Security Audit) - Depends on Group 3 (if Auth0 detected):
-  oauth-security-auditor (sequential, after auth0-detector)
+Group 3B (Security Audits) - Depends on Group 3:
+  oauth-security-auditor (sequential, after auth0-detector, if Auth0 detected)
+  payload-cms-config-analyzer (sequential, after payload-cms-detector, if Payload CMS detected)
 
 Group 4 (Synthesis) - Depends on all:
   context-synthesizer (sequential)
@@ -124,25 +131,28 @@ Group 4 (Synthesis) - Depends on all:
 
 **Time Savings**: Parallel execution is 55% faster than sequential!
 **Note**: Auth0 security audit runs automatically after Auth0 detection, adding ~10 minutes if Auth0 is present.
+**Note**: Payload CMS config analysis runs automatically after CMS detection, adding ~10 minutes if Payload CMS is present.
 
 ### Phase 4: Output Generation
 
 Each agent contributes to final documents:
 
 ```
-structure-analyst       →  ARCHITECTURE.md (structure section)
-domain-expert           →  DOMAIN_CONTEXT.md (complete)
-pattern-detective       →  ARCHITECTURE.md (patterns section)
-ui-specialist           →  UI_DESIGN_SYSTEM.md (complete)
-test-strategist         →  TESTING_GUIDE.md (complete)
-database-analyst        →  DATABASE_CONTEXT.md (complete)
-messaging-architect     →  MESSAGING_GUIDE.md (complete)
-api-design-analyst      →  API_DESIGN_GUIDE.md (complete)
-stripe-payment-expert   →  STRIPE_PAYMENT_CONTEXT.md (complete, if Stripe found)
-auth0-detector          →  AUTH0_OAUTH_CONTEXT.md (complete, if Auth0 found)
-oauth-security-auditor  →  AUTH0_SECURITY_AUDIT.md (complete, if Auth0 found)
-quality-auditor         →  QUALITY_REPORT.md (complete)
-context-synthesizer     →  AI_CONTEXT.md, CODEBASE_GUIDE.md
+structure-analyst           →  ARCHITECTURE.md (structure section)
+domain-expert               →  DOMAIN_CONTEXT.md (complete)
+pattern-detective           →  ARCHITECTURE.md (patterns section)
+ui-specialist               →  UI_DESIGN_SYSTEM.md (complete)
+test-strategist             →  TESTING_GUIDE.md (complete)
+database-analyst            →  DATABASE_CONTEXT.md (complete)
+messaging-architect         →  MESSAGING_GUIDE.md (complete)
+api-design-analyst          →  API_DESIGN_GUIDE.md (complete)
+stripe-payment-expert       →  STRIPE_PAYMENT_CONTEXT.md (complete, if Stripe found)
+auth0-detector              →  AUTH0_OAUTH_CONTEXT.md (complete, if Auth0 found)
+oauth-security-auditor      →  AUTH0_SECURITY_AUDIT.md (complete, if Auth0 found)
+payload-cms-detector        →  PAYLOAD_CMS_CONTEXT.md (complete, if Payload CMS found)
+payload-cms-config-analyzer →  PAYLOAD_CMS_CONFIG.md (complete, if Payload CMS found)
+quality-auditor             →  QUALITY_REPORT.md (complete)
+context-synthesizer         →  AI_CONTEXT.md, CODEBASE_GUIDE.md
 ```
 
 ## Execution Workflow
@@ -177,6 +187,7 @@ Detecting project type...
   ✓ Package Manager: pnpm (monorepo detected)
   ✓ Database: Prisma + PostgreSQL
   ✓ Testing: Vitest + Playwright
+  ✓ CMS: Payload CMS v2.x detected
 
 Assessing complexity...
   Files: 387
@@ -185,8 +196,8 @@ Assessing complexity...
   Estimated LOC: ~25,000
 
   Complexity: Moderate
-  Estimated Time: 45 minutes
-  Workflow: Standard (3 parallel phases)
+  Estimated Time: 55 minutes (includes Payload CMS analysis)
+  Workflow: Standard (3 parallel phases + security audits)
 ```
 
 ### Step 3: Execute Foundation Agents (Group 1)
@@ -195,160 +206,31 @@ Use the Task tool to run agents in parallel:
 
 **Critical**: Execute ALL agents in Group 1 in a SINGLE message with multiple Task tool calls.
 
-```markdown
-Invoke three Task tools simultaneously:
-
-Task 1 - structure-analyst:
-  Analyze file system, create STRUCTURE_MAP.md
-  Store in: .claude/memory/structure/
-
-Task 2 - integration-mapper:
-  Map external integrations, create INTEGRATION_MAP.md
-  Store in: .claude/memory/integrations/
-
-Task 3 - ui-specialist (if frontend):
-  Extract UI components, create UI_DESIGN_SYSTEM.md
-  Store in: .claude/memory/ui/
-```
-
-Wait for all three to complete before proceeding.
-
 ### Step 4: Execute Analysis Agents (Group 2)
 
-**Depends on**: Group 1 outputs (STRUCTURE_MAP.md)
-
-```markdown
-Invoke four Task tools simultaneously:
-
-Task 1 - domain-expert:
-  Extract business logic using STRUCTURE_MAP.md
-  Create DOMAIN_MODEL.md
-  Store in: .claude/memory/domain/
-
-Task 2 - pattern-detective:
-  Identify patterns using STRUCTURE_MAP.md
-  Create PATTERNS_CATALOG.md
-  Store in: .claude/memory/patterns/
-
-Task 3 - test-strategist (if tests found):
-  Analyze test patterns
-  Create TESTING_GUIDE.md
-  Store in: .claude/memory/testing/
-
-Task 4 - database-analyst (if database):
-  Analyze schema and DAL
-  Create DATABASE_CONTEXT.md
-  Store in: .claude/memory/database/
-```
+**Depends on**: Group 1 outputs
 
 ### Step 5: Execute Architecture Agents (Group 3)
 
 **Depends on**: Groups 1 & 2 outputs
 
-```markdown
-Invoke five Task tools simultaneously:
+### Step 5B: Execute Security Audits (Group 3B, Sequential)
 
-Task 1 - messaging-architect (if messaging):
-  Analyze events and queues
-  Create MESSAGING_GUIDE.md
-  Store in: .claude/memory/messaging/
+**Depends on**: Group 3 outputs
 
-Task 2 - api-design-analyst (if APIs):
-  Analyze API design
-  Create API_DESIGN_GUIDE.md
-  Store in: .claude/memory/api-design/
-
-Task 3 - stripe-payment-expert (if Stripe detected):
-  Analyze Stripe payment integration
-  Create STRIPE_PAYMENT_CONTEXT.md
-  Store in: .claude/steering/
-
-Task 4 - auth0-detector (if Auth0 detected):
-  Analyze Auth0 OAuth implementation
-  Create AUTH0_OAUTH_CONTEXT.md
-  Store in: .claude/steering/
-
-Task 5 - quality-auditor:
-  Perform security and quality audit using all previous outputs
-  Create QUALITY_REPORT.md
-  Store in: .claude/memory/quality/
-```
-
-### Step 5B: Auth0 Security Audit (if Auth0 detected)
-
-**Depends on**: Step 5 outputs from auth0-detector
-
-```markdown
-Invoke single Task tool (sequential, after auth0-detector):
-
-Task - oauth-security-auditor:
-  Deep security analysis of Auth0 implementation
-  Review for GDPR, HIPAA, SOC2 compliance
-  Identify OAuth vulnerabilities
-  Create AUTH0_SECURITY_AUDIT.md
-  Store in: .claude/steering/
-```
+Automatically executes after:
+- Auth0 detection (if Auth0 found)
+- Payload CMS detection (if Payload CMS found)
 
 ### Step 6: Final Synthesis (Group 4)
 
 **Depends on**: All previous outputs
-
-```markdown
-Invoke single Task tool:
-
-Task - context-synthesizer:
-  Load ALL memory outputs from:
-    - .claude/memory/structure/
-    - .claude/memory/domain/
-    - .claude/memory/patterns/
-    - .claude/memory/integrations/
-    - .claude/memory/ui/
-    - .claude/memory/testing/
-    - .claude/memory/database/
-    - .claude/memory/messaging/
-    - .claude/memory/api-design/
-    - .claude/memory/quality/
-    - .claude/steering/ (STRIPE_PAYMENT_CONTEXT.md, AUTH0_OAUTH_CONTEXT.md, AUTH0_SECURITY_AUDIT.md)
-
-  Generate final documents:
-    - ARCHITECTURE.md (comprehensive system architecture)
-    - AI_CONTEXT.md (optimized for AI agents)
-    - CODEBASE_GUIDE.md (developer onboarding)
-    - Include references to Auth0 and Stripe integrations if present
-
-  Store in: .claude/steering/
-```
 
 ### Step 7: Validation and Completion
 
 ```bash
 # Validate generated files
 bash scripts/validate.sh
-
-# Update session state
-cat > .claude/memory/orchestration/current_session.json << EOF
-{
-  "session_id": "$SESSION_ID",
-  "started": "$(date -Iseconds)",
-  "completed": "$(date -Iseconds)",
-  "status": "complete",
-  "outputs": [
-    ".claude/steering/ARCHITECTURE.md",
-    ".claude/steering/AI_CONTEXT.md",
-    ".claude/steering/CODEBASE_GUIDE.md",
-    ".claude/steering/DOMAIN_CONTEXT.md",
-    ".claude/steering/QUALITY_REPORT.md",
-    ".claude/steering/UI_DESIGN_SYSTEM.md",
-    ".claude/steering/TESTING_GUIDE.md",
-    ".claude/steering/DATABASE_CONTEXT.md",
-    ".claude/steering/MESSAGING_GUIDE.md",
-    ".claude/steering/API_DESIGN_GUIDE.md",
-    ".claude/steering/STRIPE_PAYMENT_CONTEXT.md",
-    ".claude/steering/AUTH0_OAUTH_CONTEXT.md",
-    ".claude/steering/AUTH0_SECURITY_AUDIT.md"
-  ]
-}
-EOF
 
 # Display summary
 echo "✅ Steering context generation complete!"
@@ -360,20 +242,6 @@ echo "Next Steps:"
 echo "  1. Review: /steering-status"
 echo "  2. Load context: Reference .claude/steering/*.md in prompts"
 echo "  3. Update later: /steering-update (incremental)"
-```
-
-## Progress Monitoring
-
-During execution, you'll see:
-
-```
-📊 Progress: [████████████░░░░░░░░] 60% - 27 minutes elapsed
-
-Phase 2/3: Deep Analysis
-  ✓ domain-expert: DOMAIN_MODEL.md (189 KB)
-  ✓ pattern-detective: PATTERNS_CATALOG.md (98 KB)
-  ⏳ test-strategist: Analyzing test patterns... (45% complete)
-  ⏳ database-analyst: Extracting schemas... (60% complete)
 ```
 
 ## Configuration Options
@@ -409,7 +277,7 @@ Disable parallel execution if needed:
 
 ```json
 {
-  "parallel_execution": false  // Slower but uses less resources
+  "parallel_execution": false
 }
 ```
 
@@ -418,7 +286,7 @@ Disable parallel execution if needed:
 After successful completion:
 
 ```
-✅ Steering context generation complete! (44 minutes)
+✅ Steering context generation complete! (55 minutes)
 
 Generated Files (.claude/steering/):
   ✓ ARCHITECTURE.md (342 KB) - System architecture
@@ -426,24 +294,20 @@ Generated Files (.claude/steering/):
   ✓ CODEBASE_GUIDE.md (278 KB) - Developer guide
   ✓ DOMAIN_CONTEXT.md (189 KB) - Business logic
   ✓ QUALITY_REPORT.md (134 KB) - Quality analysis
-  ✓ UI_DESIGN_SYSTEM.md (203 KB) - Component library
-  ✓ TESTING_GUIDE.md (167 KB) - Test patterns
-  ✓ DATABASE_CONTEXT.md (145 KB) - Schema documentation
-  ✓ MESSAGING_GUIDE.md (123 KB) - Event catalog
-  ✓ API_DESIGN_GUIDE.md (156 KB) - API standards
+  ✓ PAYLOAD_CMS_CONTEXT.md (203 KB) - CMS architecture
+  ✓ PAYLOAD_CMS_CONFIG.md (187 KB) - CMS configuration
 
-Total: 1.9 MB of context documentation
+Total: 2.1 MB of context documentation
 
 Performance:
-  Total tokens: ~145,000
-  Agents executed: 10
+  Total tokens: ~165,000
+  Agents executed: 16
   Parallel efficiency: 52% time saved
 
 Next Steps:
   1. Review: /steering-status
   2. Load context: Reference .claude/steering/*.md in prompts
   3. Update later: /steering-update (incremental)
-  4. Export: /steering-export --format json
 ```
 
 ## Troubleshooting
@@ -482,15 +346,6 @@ For very large codebases:
 3. Increase excluded patterns
 4. Use incremental approach
 
-### Poor Quality Output
-
-Try:
-
-1. Run with Opus model for better quality
-2. Check excluded patterns aren't too broad
-3. Ensure agents have proper tool access
-4. Review generated memory files for completeness
-
 ## Advanced Usage
 
 ### Selective Analysis
@@ -498,20 +353,10 @@ Try:
 Analyze only specific areas:
 
 ```json
-// .claude/steering/config.json
 {
-  "focus_areas": ["security"],
-  "agents": ["quality-auditor", "security-engineer"]
+  "focus_areas": ["cms", "api"],
+  "agents": ["payload-cms-detector", "api-design-analyst"]
 }
-```
-
-### Custom Templates
-
-Provide custom output templates:
-
-```bash
-mkdir -p .claude/steering/templates/
-# Add custom markdown templates
 ```
 
 ### Multi-Project Analysis
