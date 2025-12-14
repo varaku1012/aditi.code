@@ -1,0 +1,31 @@
+{
+  "name": "auto-docs",
+  "version": "1.0.0",
+  "description": "Automated documentation generation from code. Creates API references, README updates, architecture docs, and docstrings. Keeps documentation in sync with code changes.",
+  "author": {
+    "name": "Varaku",
+    "email": "contact@varaku.com"
+  },
+  "homepage": "https://github.com/varaku1012/aditi.code",
+  "repository": "https://github.com/varaku1012/aditi.code.git",
+  "license": "MIT",
+  "keywords": [
+    "documentation",
+    "api-docs",
+    "readme",
+    "docstrings",
+    "auto-generate",
+    "markdown"
+  ],
+  "commands": [
+    "./commands/docs-generate.md",
+    "./commands/docs-api.md",
+    "./commands/docs-readme.md",
+    "./commands/docs-docstrings.md",
+    "./commands/docs-sync.md"
+  ],
+  "agents": [
+    "./agents/docs-writer.md",
+    "./agents/api-documenter.md"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "devops-toolkit",
+  "version": "1.0.0",
+  "description": "DevOps automation toolkit for deployment, CI/CD, environment management, and infrastructure. Streamlines deployment workflows and environment configuration.",
+  "author": {
+    "name": "Varaku",
+    "email": "contact@varaku.com"
+  },
+  "homepage": "https://github.com/varaku1012/aditi.code",
+  "repository": "https://github.com/varaku1012/aditi.code.git",
+  "license": "MIT",
+  "keywords": [
+    "devops",
+    "deployment",
+    "ci-cd",
+    "docker",
+    "kubernetes",
+    "environment",
+    "infrastructure"
+  ],
+  "commands": [
+    "./commands/deploy.md",
+    "./commands/env-setup.md",
+    "./commands/docker-build.md",
+    "./commands/ci-status.md",
+    "./commands/infra-check.md"
+  ],
+  "agents": [
+    "./agents/deployment-engineer.md",
+    "./agents/infrastructure-analyst.md"
+  ]
+}

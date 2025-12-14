@@ -1,0 +1,34 @@
+{
+  "name": "code-quality",
+  "version": "1.0.0",
+  "description": "Comprehensive code quality automation with linting, testing, security scanning, and pre-commit hooks. Enforces coding standards and catches issues before commit.",
+  "author": {
+    "name": "Varaku",
+    "email": "contact@varaku.com"
+  },
+  "homepage": "https://github.com/varaku1012/aditi.code",
+  "repository": "https://github.com/varaku1012/aditi.code.git",
+  "license": "MIT",
+  "keywords": [
+    "code-quality",
+    "linting",
+    "testing",
+    "security",
+    "pre-commit",
+    "automation",
+    "standards"
+  ],
+  "commands": [
+    "./commands/quality-check.md",
+    "./commands/quality-fix.md",
+    "./commands/quality-report.md",
+    "./commands/test-run.md",
+    "./commands/test-coverage.md"
+  ],
+  "agents": [
+    "./agents/code-linter.md",
+    "./agents/security-scanner.md",
+    "./agents/test-generator.md"
+  ],
+  "hooks": "./hooks/hooks.json"
+}

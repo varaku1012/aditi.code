@@ -1,0 +1,33 @@
+{
+  "name": "infinite-video",
+  "version": "1.0.0",
+  "description": "Video generation pipeline management for InfiniteMedia. Submit jobs, monitor status, manage queues, review quality, and debug pipeline issues. Supports idea-to-video and script-to-video workflows.",
+  "author": {
+    "name": "Varaku",
+    "email": "contact@varaku.com"
+  },
+  "homepage": "https://github.com/varaku1012/aditi.code",
+  "repository": "https://github.com/varaku1012/aditi.code.git",
+  "license": "MIT",
+  "keywords": [
+    "video-generation",
+    "ai-video",
+    "pipeline-management",
+    "job-queue",
+    "storyboard",
+    "multi-agent",
+    "infinitemedia"
+  ],
+  "commands": [
+    "./commands/video-generate.md",
+    "./commands/video-status.md",
+    "./commands/video-queue.md",
+    "./commands/video-retry.md",
+    "./commands/video-config.md"
+  ],
+  "agents": [
+    "./agents/pipeline-orchestrator.md",
+    "./agents/video-qa-reviewer.md",
+    "./agents/storyboard-analyst.md"
+  ]
+}

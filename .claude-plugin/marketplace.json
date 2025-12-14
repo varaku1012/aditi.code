@@ -1,8 +1,8 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "aditi-code-plugins",
-  "version": "1.0.0",
-  "description": "Production-ready Claude Code plugins for codebase analysis, context generation, and AI-assisted development workflows",
+  "version": "1.1.0",
+  "description": "Production-ready Claude Code plugins for codebase analysis, video generation, code quality, documentation, DevOps, and AI-assisted development workflows",
   "owner": {
     "name": "Varaku",
     "email": "contact@varaku.com"
@@ -48,6 +48,134 @@
         "hipaa",
         "soc2"
       ]
+    },
+    {
+      "name": "infinite-video",
+      "description": "Video generation pipeline management for InfiniteMedia. Submit jobs, monitor status, manage queues, review quality, and debug pipeline issues. Supports idea-to-video and script-to-video workflows with specialized AI agents.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Varaku",
+        "email": "contact@varaku.com"
+      },
+      "source": "./plugins/infinite-video",
+      "category": "media",
+      "homepage": "https://github.com/varaku1012/aditi.code/blob/main/plugins/infinite-video/README.md",
+      "keywords": [
+        "video-generation",
+        "ai-video",
+        "pipeline-management",
+        "storyboard",
+        "multi-agent",
+        "infinitemedia"
+      ]
+    },
+    {
+      "name": "code-quality",
+      "description": "Comprehensive code quality automation with linting, testing, security scanning, and pre-commit hooks. Enforces coding standards, catches issues before commit, and provides detailed quality reports.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Varaku",
+        "email": "contact@varaku.com"
+      },
+      "source": "./plugins/code-quality",
+      "category": "development",
+      "homepage": "https://github.com/varaku1012/aditi.code/blob/main/plugins/code-quality/README.md",
+      "keywords": [
+        "code-quality",
+        "linting",
+        "testing",
+        "security",
+        "pre-commit",
+        "automation"
+      ]
+    },
+    {
+      "name": "auto-docs",
+      "description": "Automated documentation generation from code. Creates API references, README updates, architecture docs, and docstrings. Keeps documentation in sync with code changes automatically.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Varaku",
+        "email": "contact@varaku.com"
+      },
+      "source": "./plugins/auto-docs",
+      "category": "documentation",
+      "homepage": "https://github.com/varaku1012/aditi.code/blob/main/plugins/auto-docs/README.md",
+      "keywords": [
+        "documentation",
+        "api-docs",
+        "readme",
+        "docstrings",
+        "auto-generate"
+      ]
+    },
+    {
+      "name": "devops-toolkit",
+      "description": "DevOps automation toolkit for deployment, CI/CD, environment management, and infrastructure. Streamlines deployment workflows, Docker builds, and infrastructure monitoring.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Varaku",
+        "email": "contact@varaku.com"
+      },
+      "source": "./plugins/devops-toolkit",
+      "category": "devops",
+      "homepage": "https://github.com/varaku1012/aditi.code/blob/main/plugins/devops-toolkit/README.md",
+      "keywords": [
+        "devops",
+        "deployment",
+        "ci-cd",
+        "docker",
+        "kubernetes",
+        "infrastructure"
+      ]
+    },
+    {
+      "name": "feature-dev",
+      "description": "Comprehensive feature development workflow with specialized agents for codebase exploration, architecture design, and quality review",
+      "version": "1.0.0",
+      "source": "./plugins/feature-dev",
+      "category": "development"
+    },
+    {
+      "name": "code-review",
+      "description": "Automated code review for pull requests using multiple specialized agents with confidence-based scoring",
+      "version": "1.0.0",
+      "source": "./plugins/code-review",
+      "category": "development"
+    },
+    {
+      "name": "commit-commands",
+      "description": "Streamline your git workflow with simple commands for committing, pushing, and creating pull requests",
+      "version": "1.0.0",
+      "source": "./plugins/commit-commands",
+      "category": "productivity"
+    },
+    {
+      "name": "pr-review-toolkit",
+      "description": "Comprehensive PR review agents specializing in comments, tests, error handling, type design, code quality, and code simplification",
+      "version": "1.0.0",
+      "source": "./plugins/pr-review-toolkit",
+      "category": "development"
+    },
+    {
+      "name": "agent-sdk-dev",
+      "description": "Claude Agent SDK Development Plugin with bootstrap and verification tools",
+      "version": "1.0.0",
+      "source": "./plugins/agent-sdk-dev",
+      "category": "development"
+    },
+    {
+      "name": "security-guidance",
+      "description": "Security reminder hook that warns about potential security issues when editing files",
+      "version": "1.0.0",
+      "source": "./plugins/security-guidance",
+      "category": "security"
+    },
+    {
+      "name": "explanatory-output-style",
+      "description": "Adds educational insights about implementation choices and codebase patterns",
+      "version": "1.0.0",
+      "source": "./plugins/explanatory-output-style",
+      "category": "learning"
     }
   ]
 }

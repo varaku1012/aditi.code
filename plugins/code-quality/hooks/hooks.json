@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '⚡ Code modified - consider running /quality-check'"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash(git commit:*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '🔍 Pre-commit: Checking for common issues...'"
+          }
+        ]
+      }
+    ]
+  }
+}
